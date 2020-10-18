@@ -13,9 +13,15 @@ public interface MovieMapper {
 
 	@Mapping(source = "rentals", target = "rentalIds")
 	UserDto userToUserDto(User user);
+	
+	// @Mapping(source = "rentals", target = "rentalIds")
+	// User userDtoToUser(UserDto dto);
 
 	@Mapping(source = "user.id", target = "userId")
 	RentalDto rentalToRentalDto(Rental rental);
+	
+	@Mapping(source = "dto.userId", target = "user.id")
+	Rental rentalDtoToRental(RentalDto dto);
 
 	default Long rentalToLong(Rental r) {
 		return r.getId();

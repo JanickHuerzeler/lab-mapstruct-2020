@@ -29,6 +29,7 @@ public class Main implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		test1();
 		test2();
+		test3();
 	}
 
 	private void test1() {
@@ -57,6 +58,22 @@ public class Main implements CommandLineRunner {
 
 		RentalDto dto = mapper.rentalToRentalDto(rental);
 		System.out.println(dto);
+	}
+
+	private void test3(){
+		User user = new User();
+		user.setId(1234L);
+		user.setLastName("Mueller");
+		user.setFirstName("Peter");
+
+		Rental rental = new Rental(555L, 15);
+		rental.setUser(user);
+		user.getRentals().add(rental);
+
+		RentalDto dto = mapper.rentalToRentalDto(rental);
+		System.out.println(dto);
+		Rental rentalBack = mapper.rentalDtoToRental(dto);
+		System.out.println(rentalBack);
 	}
 
 
